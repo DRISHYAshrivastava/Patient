@@ -6,8 +6,7 @@ import uuid
 # Function to save data to Excel file
 def save_to_excel(data):
     df = pd.DataFrame(data)
-    with pd.ExcelWriter('patient_records.xlsx', mode='a', if_sheet_exists='replace') as writer:
-        df.to_excel(writer, index=False, header=not writer.sheets)
+    df.to_excel('patient_records.xlsx', index=False)
 
 # Function to generate unique patient ID
 def generate_patient_id():
@@ -75,3 +74,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
