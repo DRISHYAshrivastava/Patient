@@ -44,11 +44,14 @@ def main():
     date_of_visit = st.date_input("Date of Visit", datetime.now())
 
     # Check if the patient already exists in records
-    existing_patient = existing_data[
-        (existing_data['First Name'] == first_name) &
-        (existing_data['Last Name'] == last_name) &
-        (existing_data['Age'] == age)
-    ]
+    if not existing_data.empty and set(existing_data.columns) == set(data.keys()):
+        existing_patient = existing_data[
+            (existing_data['First Name'] == first_name) &
+            (existing_data['Last Name'] == last_name) &
+            (existing_data['Age'] == age)
+        ]
+    else:
+        existing_patient = pd.DataFrame()
 
     if st.button("Submit"):
         if existing_patient.empty:
