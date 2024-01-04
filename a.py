@@ -35,7 +35,6 @@ def main():
     }
 
     # User input section
-    st.subheader("Patient Information")
     first_name = st.text_input("First Name")
     last_name = st.text_input("Last Name")
     age = st.number_input("Age", min_value=0, max_value=150)
@@ -55,7 +54,7 @@ def main():
         if existing_patient.empty:
             patient_id = generate_patient_id()
         else:
-            patient_id = existing_patient['Patient ID'].values[0]
+            patient_id = existing_patient.iloc[0]['Patient ID']
 
         # Update data dictionary
         data['Patient ID'].append(patient_id)
@@ -74,4 +73,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
